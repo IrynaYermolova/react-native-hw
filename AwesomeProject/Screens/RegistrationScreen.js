@@ -5,8 +5,11 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  Image,
   Keyboard,
 } from "react-native";
+// import Icon from "react-native-vector-icons/EvilIcons";
+
 
 // import * as Font from 'expo-font';
 // import AppLoading from 'expo-app-loading';
@@ -15,7 +18,12 @@ export const RegistrationScreen = ({ keyboardShown }) => {
   const [login, setLogin] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isReady, setIsReady] = useState(false);
+  // const [isReady, setIsReady] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleTogglePassword = () => {
+    setShowPassword((prevState) => !prevState);
+  };
 
   const onRegSubmit = () => {
     Keyboard.dismiss();
@@ -44,7 +52,15 @@ export const RegistrationScreen = ({ keyboardShown }) => {
         marginBottom: keyboardShown ? -150 : 0,
       }}
     >
-      <View style={styles.avatarThumb}></View>
+      <View style={styles.avatarThumb}>
+       {/* <Image
+        />
+              <Icon name="plus" style={styles.imgAddPhoto} size={35} />  */}
+        <Image
+                  source={require('../assets/addPhoto.png')}
+                  style={styles.imgAddPhoto}
+                ></Image>
+      </View>
       <Text style={styles.authTitle}>Реєстрація</Text>
 
       <TextInput
@@ -66,6 +82,12 @@ export const RegistrationScreen = ({ keyboardShown }) => {
         onChangeText={handlePassword}
         value={password}
       />
+      <TouchableOpacity
+                style={styles.buttonPassword}
+        activeOpacity={0.7}
+        onPress={handleTogglePassword}>
+                <Text style={styles.buttonText}> {showPassword ? "Приховати" : "Показати"}</Text>
+              </TouchableOpacity>
       <TouchableOpacity style={styles.submitButton} onPress={onRegSubmit}>
         <Text style={styles.submitButtonText}>Зареєстуватися</Text>
       </TouchableOpacity>
@@ -91,6 +113,13 @@ const styles = StyleSheet.create({
     marginTop: -60,
     marginLeft: "auto",
     marginRight: "auto",
+  },
+  imgAddPhoto: {
+    position: 'absolute',
+    width: 25,
+    height: 25,
+    top: 81,
+    right: -12.5,
   },
 
   authTitle: {
@@ -139,5 +168,18 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     lineHeight: 19,
     color: "#1B4371",
+  },
+  buttonText: {
+    fontSize: 16,
+    lineHeight: 19,
+    textAlign: 'center',
+    color: '#1B4371',
+  },
+  buttonPassword: {
+     position: 'absolute',
+     paddingVertical: 17,
+     right:6,
+     top: 278,
+     marginRight: 16,
   },
 });
