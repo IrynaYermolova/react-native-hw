@@ -8,6 +8,7 @@ import {
   Image,
   Keyboard,
 } from "react-native";
+// import _default from "react-native-gesture-handler/lib/typescript/components/GestureHandlerButton";
 // import Icon from "react-native-vector-icons/EvilIcons";
 
 
@@ -18,8 +19,10 @@ export const RegistrationScreen = ({ keyboardShown }) => {
   const [login, setLogin] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [isReady, setIsReady] = useState(false);
+  
   const [showPassword, setShowPassword] = useState(false);
+
+
 
   const handleTogglePassword = () => {
     setShowPassword((prevState) => !prevState);
@@ -44,6 +47,7 @@ export const RegistrationScreen = ({ keyboardShown }) => {
   const handlePassword = (text) => {
     setPassword(text);
   };
+  
   return (
     <View
       style={{
@@ -183,3 +187,6 @@ const styles = StyleSheet.create({
      marginRight: 16,
   },
 });
+    
+export default RegistrationScreen;
+
